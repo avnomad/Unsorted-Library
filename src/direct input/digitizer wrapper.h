@@ -22,8 +22,10 @@ public:
 
 	inline DIDigitizer(IDirectInput8 *directInputObject , WindowHandle mainWindow , DWORD modeFlags = DISCL_EXCLUSIVE | DISCL_BACKGROUND)	// DIDigitizer contructor
 	{
-		static GUID digitizerInstanceGUID = {657042160,60368,4573,{128,8,68,69,83,84,0,0}};
-
+		static GUID digitizerInstanceGUID = {0x0F75C0A0,0xD9B8,0x11E0,{0x80,0x09,0x44,0x45,0x53,0x54,0x00,0x00}};
+		//0F734FA0-D9B8-11E0-8007-444553540000
+		//0F75C0A0-D9B8-11E0-8009-444553540000
+		//0F6E94B0-D9B8-11E0-8005-444553540000
 		// create the digitizer device
 		switch(directInputObject->CreateDevice(digitizerInstanceGUID,&iObject,NULL))
 		{
@@ -56,11 +58,14 @@ public:
 			{&GUID_Unknown,8,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(6),0},
 			{&GUID_Unknown,12,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(7),0},
 			{&GUID_Unknown,16,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(8),0},
-			{&GUID_Button,20,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(0),0},
-			{&GUID_Button,21,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(1),0},
-			{&GUID_Button,22,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(2),0},
-			{&GUID_Button,23,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(3),0},
-			{&GUID_Button,24,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(4),0}
+			{&GUID_Unknown,20,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(9),0},
+			{&GUID_Unknown,24,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(10),0},
+			{&GUID_Unknown,28,DIDFT_ABSAXIS|DIDFT_MAKEINSTANCE(11),0},
+			{&GUID_Button,32,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(0),0},
+			{&GUID_Button,33,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(1),0},
+			{&GUID_Button,34,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(2),0},
+			{&GUID_Button,35,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(3),0},
+			{&GUID_Button,36,DIDFT_PSHBUTTON|DIDFT_MAKEINSTANCE(4),0}
 		};
 		static DIDATAFORMAT digitizerDataFormat = {sizeof(DIDATAFORMAT) , sizeof(DIOBJECTDATAFORMAT) , DIDF_ABSAXIS , (sizeof(DigitizerState)+3)&0xfffffffc , sizeof(digitizerControlsDataFormats)/sizeof(digitizerControlsDataFormats[0]) , digitizerControlsDataFormats};
 

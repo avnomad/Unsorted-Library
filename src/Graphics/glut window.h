@@ -85,6 +85,10 @@ public:
 	} // end function getHeight
 
 
+	inline void swapBuffers()													// swapBuffers
+	{
+		SwapBuffers(gdiContext);
+	} // end function swapBuffers
 
 private:
 
@@ -95,7 +99,7 @@ private:
 	WindowHandle iHandle;
 	int iWidth;
 	int iHeight;
-
+	HDC gdiContext;
 }; // end class Window
 
 }; // end namespace GLUT

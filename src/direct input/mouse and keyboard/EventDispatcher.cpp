@@ -24,7 +24,7 @@ using std::ios;
 using std::setw;
 using std::setprecision;
 
-ofstream sequence("c:/output/sequence.txt");
+ofstream sequence("sequence.txt");
 #endif
 
 
@@ -222,7 +222,7 @@ EventDispatcher &EventDispatcher::execute()														// execute
 															// to determine a more accurate event count and a better eventPeriod.
 } // end function execute
 
-//#define TABLET
+#define TABLET
 
 EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&mouseBegin , const DIDEVICEOBJECTDATA *mouseEnd , double eventTime)	// dispatchMouseEvent
 {
