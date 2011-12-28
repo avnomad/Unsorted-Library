@@ -2,3 +2,7 @@ syntax: regexp
 Debug/*
 Release/*
 ipch/*
+syntax: glob
+builders/VS2010 Solution/VS2010 Solution.opensdf
+builders/VS2010 Solution/VS2010 Solution.sdf
+builders/VS2010 Solution/VS2010 Solution.suo
