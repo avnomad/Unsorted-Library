@@ -47,7 +47,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "$(Root)Files\Visual Studio 2010\Static Libraries\$(TargetFileName)"</Command>
+      <Command>copy "$(TargetPath)" "$(Root)Files\Visual Studio 2010\Static Libraries\Unsorted Library.lib"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>copy target to library folder</Message>
@@ -66,7 +66,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "$(Root)Files\Visual Studio 2010\Static Libraries\$(TargetFileName)"</Command>
+      <Command>copy "$(TargetPath)" "$(Root)Files\Visual Studio 2010\Static Libraries\Unsorted Library.lib"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>copy target to library folder</Message>

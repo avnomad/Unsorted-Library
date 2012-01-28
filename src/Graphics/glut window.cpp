@@ -70,4 +70,6 @@ GLUT::Window::Window(const char *name)												// Window conversion construct
 	SetPixelFormat(gdiContext,pixelFormatIndex,&pfd);
 	HGLRC glContext = wglCreateContext(gdiContext);
 	wglMakeCurrent(gdiContext,glContext);
+
+	glViewport(0,0,iWidth,iHeight);
 } // end Window conversion constructor

@@ -225,10 +225,10 @@ EventDispatcher &EventDispatcher::execute()														// execute
 #define TABLET
 
 EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&mouseBegin , const DIDEVICEOBJECTDATA *mouseEnd , double eventTime)	// dispatchMouseEvent
-{
+{	
 #ifdef TABLET
-	static double X = 512;
-	static double Y = 384;
+	static double X = 800;
+	static double Y = 600;
 #endif
 	DWORD xOffset = 0;
 	DWORD yOffset = (DWORD)&mouse.Y - (DWORD)&mouse.X;	// should be sizeof(LONG)
@@ -254,10 +254,12 @@ EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&
 		mouse.absolute.x += mouse.X;
 		mouse.absolute.y += mouse.Y;
 #else
-		X += mouse.X/64.0;
-		Y += mouse.Y/85.3333;
+		X += mouse.X*1600.0/65535.0;
+		Y += mouse.Y*1200.0/65535.0;
 		mouse.absolute.x = X;
 		mouse.absolute.y = Y;
+		//mouse.absolute.x += trunc(1.1*mouse.X*1600.0/65535.0);
+		//mouse.absolute.y += trunc(1.1*mouse.Y*1200.0/65535.0);
 #endif
 		if(motion) motion(*this,eventTime);	// call the motion handler (if one it's present)
 	}
@@ -280,10 +282,12 @@ EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&
 		mouse.absolute.x += mouse.X;
 		mouse.absolute.y += mouse.Y;
 #else
-		X += mouse.X/64.0;
-		Y += mouse.Y/85.3333;
+		X += mouse.X*1600.0/65535.0;
+		Y += mouse.Y*1200.0/65535.0;
 		mouse.absolute.x = X;
 		mouse.absolute.y = Y;
+		//mouse.absolute.x += trunc(1.1*mouse.X*1600.0/65535.0);
+		//mouse.absolute.y += trunc(1.1*mouse.Y*1200.0/65535.0);
 #endif
 		if(motion) motion(*this,eventTime);	// call the motion handler (if one it's present)
 	}
