@@ -222,14 +222,9 @@ EventDispatcher &EventDispatcher::execute()														// execute
 															// to determine a more accurate event count and a better eventPeriod.
 } // end function execute
 
-#define TABLET
 
 EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&mouseBegin , const DIDEVICEOBJECTDATA *mouseEnd , double eventTime)	// dispatchMouseEvent
 {	
-#ifdef TABLET
-	static double X = 800;
-	static double Y = 600;
-#endif
 	DWORD xOffset = 0;
 	DWORD yOffset = (DWORD)&mouse.Y - (DWORD)&mouse.X;	// should be sizeof(LONG)
 	DWORD wheelOffset = (DWORD)&mouse.Z - (DWORD)&mouse.X;	// should be 2*sizeof(LONG)
@@ -249,18 +244,22 @@ EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&
 		{
 			mouse.Y = 0;
 		} // end else
+
 		//GetCursorPos(&mouse.absolute);	// update the absolute position (DirectInput reports the relative motion)
-#ifndef TABLET
-		mouse.absolute.x += mouse.X;
-		mouse.absolute.y += mouse.Y;
-#else
-		X += mouse.X*1600.0/65535.0;
-		Y += mouse.Y*1200.0/65535.0;
-		mouse.absolute.x = X;
-		mouse.absolute.y = Y;
-		//mouse.absolute.x += trunc(1.1*mouse.X*1600.0/65535.0);
-		//mouse.absolute.y += trunc(1.1*mouse.Y*1200.0/65535.0);
-#endif
+
+		if(iAssumeDigitizer)
+		{
+			iX += mouse.X*xFactor;
+			iY += mouse.Y*yFactor;
+			mouse.absolute.x = iX;
+			mouse.absolute.y = iY;
+		}
+		else
+		{
+			mouse.absolute.x += mouse.X;
+			mouse.absolute.y += mouse.Y;
+		} // end else
+
 		if(motion) motion(*this,eventTime);	// call the motion handler (if one it's present)
 	}
 	else if(mouseBegin->dwOfs == yOffset)	// if there was a move on the y axis
@@ -278,17 +277,20 @@ EventDispatcher &EventDispatcher::dispatchMouseEvent(const DIDEVICEOBJECTDATA *&
 			mouse.X = 0;
 		} // end else
 		//GetCursorPos(&mouse.absolute);	// update the absolute position (DirectInput reports the relative motion)
-#ifndef TABLET
-		mouse.absolute.x += mouse.X;
-		mouse.absolute.y += mouse.Y;
-#else
-		X += mouse.X*1600.0/65535.0;
-		Y += mouse.Y*1200.0/65535.0;
-		mouse.absolute.x = X;
-		mouse.absolute.y = Y;
-		//mouse.absolute.x += trunc(1.1*mouse.X*1600.0/65535.0);
-		//mouse.absolute.y += trunc(1.1*mouse.Y*1200.0/65535.0);
-#endif
+
+		if(iAssumeDigitizer)
+		{
+			iX += mouse.X*xFactor;
+			iY += mouse.Y*yFactor;
+			mouse.absolute.x = iX;
+			mouse.absolute.y = iY;
+		}
+		else
+		{
+			mouse.absolute.x += mouse.X;
+			mouse.absolute.y += mouse.Y;
+		} // end else
+
 		if(motion) motion(*this,eventTime);	// call the motion handler (if one it's present)
 	}
 	else if(mouseBegin->dwOfs == wheelOffset)	// if there was a move on the z axis (the wheel)

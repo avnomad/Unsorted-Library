@@ -83,7 +83,8 @@ DIDevice &DIDevice::acquire()																							// acquire
 	case DIERR_NOTINITIALIZED:
 		throw LogicError("A NotInitialized","DirectInput8","IDirectInputDevice8::Acquire","This object has not been initialized.");
 	case DIERR_OTHERAPPHASPRIO:
-		throw RuntimeError("An OtherApplicationHasPriority","DirectInput8","IDirectInputDevice8::Acquire","Another application has a higher priority level, preventing this call from succeeding. This error can occur when an application has only foreground access to a device but is attempting to acquire the device while in the background.");
+		//throw RuntimeError("An OtherApplicationHasPriority","DirectInput8","IDirectInputDevice8::Acquire","Another application has a higher priority level, preventing this call from succeeding. This error can occur when an application has only foreground access to a device but is attempting to acquire the device while in the background.");
+		return *this;
 	default:
 #ifdef DEBUG		
 		throw RuntimeError("An UnknownError","DirectInput8","IDirectInputDevice8::Acquire","The above function returned an unexpected error code. This shouldn't normally happen.");
@@ -109,7 +110,8 @@ bool DIDevice::getDeviceState(DWORD bufferSize , VOID *stateBuffer)													
 	case E_PENDING:
 		throw RuntimeError("A DataPending","DirectInput8","IDirectInputDevice8::GetDeviceState","Data is not yet available.");
 	case DIERR_NOTACQUIRED:
-		throw LogicError("A NotAcquired","DirectInput8","IDirectInputDevice8::GetDeviceState","The operation cannot be performed unless the device is acquired.");
+		//throw LogicError("A NotAcquired","DirectInput8","IDirectInputDevice8::GetDeviceState","The operation cannot be performed unless the device is acquired.");
+		return false;
 	case DIERR_INPUTLOST:	// Access to the input device has been lost. It must be reacquired.
 		return false;
 	default:

@@ -3,32 +3,12 @@
 // includes
 #include <utility>
 
-static int width;
-static int height;
-
-static void sizeNoter(int width , int height)										// sizeNoter
-{
-	::width = width;
-	::height = height;
-	glViewport(0,0,width,height);
-	throw 0;
-	//throw std::pair<int,int>(width,height);
-} // end function sizeNoter
-
-
-static void intThrower(void){
-	throw 0;
-	std::cout<<"hi!";
-}												// intThrower
-
-
 GLUT::Window::Window(const char *name)												// Window conversion constructor
 {
-	// initialize GLUT
+	// initialize GLUT: still needed to call some glut functions
 	int argc = 1;	// trick glutInit.
 	char *str = "GLUT_application";
 	char **argv = &str;
-
 	glutInit(&argc,argv);
 
 	// create OpenGL window the Win32 way
@@ -41,7 +21,7 @@ GLUT::Window::Window(const char *name)												// Window conversion construct
 
 	RegisterClass(&windowClass);
 
-	iHandle = CreateWindow("defaultClass",name,WS_OVERLAPPEDWINDOW,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,
+	iHandle = CreateWindow("defaultClass",name,WS_POPUP,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,
 					nullptr,nullptr,GetModuleHandle(nullptr),nullptr);
 
 	ShowWindow(iHandle,SW_NORMAL);
@@ -68,8 +48,6 @@ GLUT::Window::Window(const char *name)												// Window conversion construct
 	pfd.iLayerType = PFD_MAIN_PLANE;
 	int pixelFormatIndex = ChoosePixelFormat(gdiContext,&pfd);
 	SetPixelFormat(gdiContext,pixelFormatIndex,&pfd);
-	HGLRC glContext = wglCreateContext(gdiContext);
+	glContext = wglCreateContext(gdiContext);
 	wglMakeCurrent(gdiContext,glContext);
-
-	glViewport(0,0,iWidth,iHeight);
 } // end Window conversion constructor

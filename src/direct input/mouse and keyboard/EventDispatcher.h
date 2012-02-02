@@ -34,7 +34,7 @@ public:
 	inline EventDispatcher(IDirectInput8 *directInputObject)												// EventDispatcher constructor
 		:keyboard(directInputObject),mouse(directInputObject),motion(0),wheel(0),
 		localKeyboardBufferSize(0),localMouseBufferSize(0),
-		localKeyboardBuffer(0),localMouseBuffer(0)
+		localKeyboardBuffer(0),localMouseBuffer(0),iAssumeDigitizer(false)
 	{
 		memset(button,0,sizeof(button));
 		memset(key,0,sizeof(key));
@@ -88,6 +88,18 @@ public:
 	EventDispatcher &execute();																				// execute
 
 
+	void assumeDigitizer(double initX, double initY, int screenWidth, int screenHeight)						// assumeDigitizer
+	{
+		iAssumeDigitizer = true;
+		iX = initX;
+		iY = initY;
+		iWidth = screenWidth;
+		iHeight = screenHeight;
+		xFactor = screenWidth/65535.0;
+		yFactor = screenHeight/65535.0;
+	} // end function assumeDigitizer
+
+
 private:
 	EventDispatcher &dispatchMouseEvent(const DIDEVICEOBJECTDATA *&mouseBegin , const DIDEVICEOBJECTDATA *mouseEnd , double eventTime);	// dispatchMouseEvent
 
@@ -121,6 +133,13 @@ private:
 	DWORD localMouseBufferSize;
 	DIDEVICEOBJECTDATA *localKeyboardBuffer;
 	DIDEVICEOBJECTDATA *localMouseBuffer;
+	double iX;	// remain uninitialized unless assumeDigitizer is called
+	double iY;	// >>
+	int iWidth;	// >>
+	int iHeight;	// >>
+	double xFactor;	// >>
+	double yFactor;	// >>
+	bool iAssumeDigitizer;	// initialized to false
 
 	// objects of this class should not be copied
 	inline EventDispatcher &operator = (const EventDispatcher &){}

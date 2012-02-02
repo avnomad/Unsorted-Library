@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DirectInput">
+      <UniqueIdentifier>{6ced54b0-d7c4-4153-af89-a3054e7652a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\header">
+      <UniqueIdentifier>{f123615c-c43b-4e6d-8295-ca0f150aab62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectInput\source">
+      <UniqueIdentifier>{062c964b-f2fa-4ab0-91e3-5e075213ab5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL">
+      <UniqueIdentifier>{5776db58-d194-4580-9a38-c4ea11a2c627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="window">
+      <UniqueIdentifier>{72146eed-e9da-4b38-b950-3ee04e22a68b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\Color\complement.h">
@@ -51,49 +66,13 @@
     <ClInclude Include="..\..\..\src\Digitizing\StrokePoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\Device Wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\digitizer properties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\digitizer state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\digitizer wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\DirectInput Wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\Keyboard Wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\mouse and keyboard\EventDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\Mouse Wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\direct input\Operational Device.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\exceptions\Exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\Graphics\DisplayList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\Graphics\glut window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\Graphics\glVertex2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Graphics\OpenGL engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\Graphics\QuadricSurfaceDescriptor.h">
@@ -177,6 +156,42 @@
     <ClInclude Include="..\..\..\src\utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\Device Wrapper.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\Operational Device.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\digitizer properties.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\digitizer state.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\digitizer wrapper.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\DirectInput Wrapper.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\mouse and keyboard\EventDispatcher.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\Keyboard Wrapper.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\Mouse Wrapper.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\direct input\common.h">
+      <Filter>DirectInput\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Graphics\OpenGL engine.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Graphics\glut window.h">
+      <Filter>window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\OpenGL\shader loader.cpp">
@@ -185,22 +200,10 @@
     <ClCompile Include="..\..\..\src\CPU clock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\direct input\Device Wrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\direct input\direct input common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\Color\namings\double precision colors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\direct input\mouse and keyboard\EventDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\exceptions\Exceptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\Graphics\glut window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\Graphics\QuadricSurfaceDescriptor.cpp">
@@ -220,6 +223,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\windows\windows common.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\direct input\Device Wrapper.cpp">
+      <Filter>DirectInput\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\direct input\direct input common.cpp">
+      <Filter>DirectInput\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\direct input\mouse and keyboard\EventDispatcher.cpp">
+      <Filter>DirectInput\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Graphics\glut window.cpp">
+      <Filter>window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

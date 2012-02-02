@@ -1,7 +1,7 @@
 #ifndef GLUT_WINDOW_H
 #define GLUT_WINDOW_H
 
-#include <gl/freeglut.h>
+#include <gl/glut.h>
 #include <windows/common.h>
 
 
@@ -19,7 +19,8 @@ public:
 
 
 	inline Window(const Window &original)															// Window copy constructor
-		:iWidth(original.iWidth),iHeight(original.iHeight),iHandle(original.iHandle)
+		:iWidth(original.iWidth),iHeight(original.iHeight),iHandle(original.iHandle),
+		gdiContext(original.gdiContext),glContext(original.glContext)
 	{
 		// empty body
 	} // end Window copy constructor
@@ -32,6 +33,10 @@ public:
 
 	inline ~Window()																				// Window destructor
 	{
+		wglMakeCurrent(nullptr,nullptr);
+		wglDeleteContext(glContext);
+		// the device context is private and will be destroyed with the window.
+		DestroyWindow(iHandle);
 	} // end Window destructor
 
 
@@ -46,6 +51,8 @@ public:
 		iHandle = original.iHandle;
 		iWidth = original.iWidth;
 		iHeight = original.iHeight;
+		gdiContext = original.gdiContext;
+		glContext = original.glContext;
 		return *this;
 	} // end function operator =
 
@@ -100,6 +107,7 @@ private:
 	int iWidth;
 	int iHeight;
 	HDC gdiContext;
+	HGLRC glContext;
 }; // end class Window
 
 }; // end namespace GLUT
