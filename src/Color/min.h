@@ -1,5 +1,3 @@
-#include <climits>
-
 inline signed char min(signed char x)						// min (signed char)
 {
 	return SCHAR_MIN;

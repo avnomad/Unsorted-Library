@@ -10,6 +10,7 @@
 #include <exceptions/exceptions.h>
 #endif
 
+#include <climits>
 
 namespace RGBA
 {

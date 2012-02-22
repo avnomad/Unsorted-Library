@@ -16,7 +16,9 @@ public:
 	static inline double currentTime()														// currentTime
 	{
 		LARGE_INTEGER ticks;					// 64 bit integer
+		//DWORD oldMask = SetThreadAffinityMask(GetCurrentThread(),1);	// allways get the time from logical processor 0
 		QueryPerformanceCounter(&ticks);		// get CPU clock ticks since... you switched on your PC?
+		//SetThreadAffinityMask(GetCurrentThread(),oldMask);	// time may vary between processors due to bugs...
 
 		return ticks.QuadPart*unit.multiplier;	// convert them to the selected time unit and return them.
 	} // end function currentTime

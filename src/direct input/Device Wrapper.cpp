@@ -110,8 +110,19 @@ bool DIDevice::getDeviceState(DWORD bufferSize , VOID *stateBuffer)													
 	case E_PENDING:
 		throw RuntimeError("A DataPending","DirectInput8","IDirectInputDevice8::GetDeviceState","Data is not yet available.");
 	case DIERR_NOTACQUIRED:
-		//throw LogicError("A NotAcquired","DirectInput8","IDirectInputDevice8::GetDeviceState","The operation cannot be performed unless the device is acquired.");
-		return false;
+		throw LogicError("A NotAcquired","DirectInput8","IDirectInputDevice8::GetDeviceState","The operation cannot be performed unless the device is acquired.");
+		/*	From MSDN:
+			"You should not attempt to reacquire the mouse on getting a DIERR_NOTACQUIRED error. 
+			If you do, you could get caught in an infinite loop - acquisition would again fail, 
+			you would get another DIERR_NOTACQUIRED error, and so on."
+
+			On the other hand it seems to return DIERR_NOTACQUIRED in cases it shouldn't and 
+			work after a while if you try to reacquire it...
+
+			Documentation sais in some cases if function returns DIERR_NOTACQUIRED the problem
+			can be solved by unacquiring and acquiring the device again manually.
+		*/
+		//return false;
 	case DIERR_INPUTLOST:	// Access to the input device has been lost. It must be reacquired.
 		return false;
 	default:

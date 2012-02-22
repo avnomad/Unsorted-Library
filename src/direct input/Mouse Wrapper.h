@@ -26,7 +26,7 @@ public:
 
 
 	inline DIMouse(IDirectInput8 *directInputObject , WindowHandle mainWindow , DWORD mode = DISCL_NONEXCLUSIVE | DISCL_FOREGROUND)	// DIMouse contructor
-		:DIDevice(directInputObject,GUID_SysMouse)
+		:DIDevice(directInputObject,GUID_SysMouse)	// DirectInput documentation says the default setting is DISCL_BACKGROUND | DISCL_NONEXCLUSIVE
 	{
 		setDataFormat(&c_dfDIMouse2);
 		setCooperativeLevel(mainWindow,mode);

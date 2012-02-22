@@ -1,5 +1,3 @@
-#include <climits>
-
 inline signed char max(signed char x)						// max (signed char)
 {
 	return SCHAR_MAX;

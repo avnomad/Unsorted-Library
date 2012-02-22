@@ -98,9 +98,9 @@ struct TablePainter
 	} // end function setGridColor
 
 
-	inline TablePainter &setColumns(color_type column)															// setColumns
+	inline TablePainter &setColumns(unsigned int columns)															// setColumns
 	{
-		columns = column;
+		this->columns = columns;
 		return *this;
 	} // end function setColumns
 

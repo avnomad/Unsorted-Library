@@ -28,38 +28,14 @@
     <Filter Include="window">
       <UniqueIdentifier>{72146eed-e9da-4b38-b950-3ee04e22a68b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{98978eb8-9cd4-471a-aab8-5d36aa6ee9d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color">
+      <UniqueIdentifier>{3c0192e7-898f-461d-8be0-16d386b01e1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\Color\complement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\glColor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\inRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\max.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\min.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\namings\double precision colors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\namings\single precision colors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\operators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Color\wavelength to RGB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\CPU clock\Unit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\Digitizing\Stroke.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,12 +87,6 @@
     <ClInclude Include="..\..\..\src\Space-Time\LineSegment2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\Space-Time\TimePoint\Unit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\Space-Time\TimePoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\Space-Time\Vector2D\operators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -138,16 +108,7 @@
     <ClInclude Include="..\..\..\src\char reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\CPU clock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\FPS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\StopWatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\triple.h">
@@ -192,16 +153,55 @@
     <ClInclude Include="..\..\..\src\Graphics\glut window.h">
       <Filter>window</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\Space-Time\TimePoint.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\CPU clock.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\StopWatch.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\CPU clock\Unit.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Space-Time\TimePoint\Unit.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\complement.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\glColor.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\namings\single precision colors.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\wavelength to RGB.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\operators.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\max.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\min.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\inRange.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Color\namings\double precision colors.h">
+      <Filter>Color</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\OpenGL\shader loader.cpp">
       <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\CPU clock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\Color\namings\double precision colors.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\exceptions\Exceptions.cpp">
       <Filter>Source Files</Filter>
@@ -209,16 +209,7 @@
     <ClCompile Include="..\..\..\src\Graphics\QuadricSurfaceDescriptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\Color\namings\single precision colors.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\StopWatch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\OpenGL\utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\Color\wavelength to RGB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\windows\windows common.cpp">
@@ -235,6 +226,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\Graphics\glut window.cpp">
       <Filter>window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\StopWatch.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\CPU clock.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Color\wavelength to RGB.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Color\namings\single precision colors.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Color\namings\double precision colors.cpp">
+      <Filter>Color</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
