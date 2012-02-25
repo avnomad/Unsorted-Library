@@ -34,6 +34,9 @@
     <Filter Include="Color">
       <UniqueIdentifier>{3c0192e7-898f-461d-8be0-16d386b01e1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{63f1260d-6bae-4dae-b9eb-f7f42a691706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\Digitizing\Stroke.h">
@@ -70,9 +73,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\OpenGL\shader loader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\OpenGL\utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\Space-Time\Line2D\global functions.h">
@@ -198,6 +198,12 @@
     <ClInclude Include="..\..\..\src\Color\namings\double precision colors.h">
       <Filter>Color</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\OpenGL\utility.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Math\mathClass.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\OpenGL\shader loader.cpp">
@@ -207,9 +213,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\Graphics\QuadricSurfaceDescriptor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\OpenGL\utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\windows\windows common.cpp">
@@ -241,6 +244,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\Color\namings\double precision colors.cpp">
       <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\OpenGL\utility.cpp">
+      <Filter>OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Math\mathClass.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

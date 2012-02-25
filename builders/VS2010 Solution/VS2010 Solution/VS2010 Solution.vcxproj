@@ -109,6 +109,7 @@
     <ClInclude Include="..\..\..\src\Graphics\RotationIndicator.h" />
     <ClInclude Include="..\..\..\src\Graphics\SquareGrid.h" />
     <ClInclude Include="..\..\..\src\Graphics\TablePainter.h" />
+    <ClInclude Include="..\..\..\src\Math\mathClass.h" />
     <ClInclude Include="..\..\..\src\obsolete\DivideByZeroException.h" />
     <ClInclude Include="..\..\..\src\obsolete\WindowsExceptions.h" />
     <ClInclude Include="..\..\..\src\OpenGL\shader loader.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="..\..\..\src\exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\..\src\Graphics\glut window.cpp" />
     <ClCompile Include="..\..\..\src\Graphics\QuadricSurfaceDescriptor.cpp" />
+    <ClCompile Include="..\..\..\src\Math\mathClass.cpp" />
     <ClCompile Include="..\..\..\src\OpenGL\shader loader.cpp" />
     <ClCompile Include="..\..\..\src\OpenGL\utility.cpp" />
     <ClCompile Include="..\..\..\src\StopWatch.cpp" />
