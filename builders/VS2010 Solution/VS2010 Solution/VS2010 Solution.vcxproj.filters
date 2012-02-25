@@ -201,7 +201,7 @@
     <ClInclude Include="..\..\..\src\OpenGL\utility.h">
       <Filter>OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\Math\mathClass.h">
+    <ClInclude Include="..\..\..\src\Math\mathematical functions.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
@@ -248,7 +248,7 @@
     <ClCompile Include="..\..\..\src\OpenGL\utility.cpp">
       <Filter>OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\Math\mathClass.cpp">
+    <ClCompile Include="..\..\..\src\Math\mathematical functions.cpp">
       <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
