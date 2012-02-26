@@ -46,6 +46,8 @@ namespace MathematicalFunctions
 		// assumes there is at least 1 column before this one and the immediately preceding column is filled.
 		// should be callable for any n > 0.
 		// currently it does not check for overflow...
+		// if unsigned long long is 64 bits, then for n=67 there wont be an overflow, but for n=68 there will be an overflow for 31<=k<=37.
+		// maybe should add checks...
 		void fillColumn(unsigned int n, size_type initial_index)	// n is column k is row
 		{
 			size_type begin = initial_index;

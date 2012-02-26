@@ -4,6 +4,8 @@
 #include <math.h>
 using std::sqrt;
 using std::floor;
+#include <limits>
+using std::numeric_limits;
 
 namespace Math
 {
@@ -22,15 +24,33 @@ namespace MathematicalFunctions
 
 
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k)
-	{
+	{											// should use inline assembly to check for overflow efficiently...
 		unsigned long long result = n;
 
 		if(n - k < k) k = n - k;
 		if(k == 0) return 1;
 
-		for(auto i = 2 ; i <= k ; i++)	// can still overflow if C[n,i]*(n-i) overflows and 
-		{								// C[n,i]*(n-i)/(i+1) == C[n,i+1] does not overflow
-			result *= --n;
+		for(auto i = 2 ; i <= k ; i++)
+		{
+			--n;
+			if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
+			{
+				unsigned long long remainder = result%i;
+				result /= i;
+				if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
+					throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+				result *= n;
+				if(remainder != 0)
+				{
+					remainder *= n;
+					remainder /= i;
+					if(numeric_limits<decltype(result)>::max() - result < remainder)	// if it would overflow
+						throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+					result += remainder;
+				} // end if
+				continue;
+			} // end if
+			result *= n;
 			result /= i;
 		} // end for
 
