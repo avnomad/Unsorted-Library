@@ -23,18 +23,18 @@ namespace MathematicalFunctions
 
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k)
 	{
-		unsigned long long int numerator = 1; // TODO: currently it can overflow even if the result can fit...
-		unsigned long long int denominator = 1;	// ...into the return type. Need to fix that.
+		unsigned long long result = n;
 
-		if( n - k < k) k = n - k;
+		if(n - k < k) k = n - k;
+		if(k == 0) return 1;
 
-		while(k)
-		{
-			numerator *= n--;
-			denominator *= k--;
-		}
+		for(auto i = 2 ; i <= k ; i++)	// can still overflow if C[n,i]*(n-i) overflows and 
+		{								// C[n,i]*(n-i)/(i+1) == C[n,i+1] does not overflow
+			result *= --n;
+			result /= i;
+		} // end for
 
-		return numerator / denominator;
+		return result;
 	} // end function binomialCoefficient
 
 

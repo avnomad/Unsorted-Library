@@ -45,6 +45,7 @@ namespace MathematicalFunctions
 	private:
 		// assumes there is at least 1 column before this one and the immediately preceding column is filled.
 		// should be callable for any n > 0.
+		// currently it does not check for overflow...
 		void fillColumn(unsigned int n, size_type initial_index)	// n is column k is row
 		{
 			size_type begin = initial_index;
