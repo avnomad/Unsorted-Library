@@ -1,6 +1,9 @@
 // mathematical functions.cpp:  common stand-alone mathematical functions (implementation)
 
 #include "mathematical functions.h"
+#include <math.h>
+using std::sqrt;
+using std::floor;
 
 namespace Math
 {
@@ -70,6 +73,23 @@ namespace MathematicalFunctions
 
 		return sum;
 	} // end function exp
+
+
+	PascalTriangle::PascalTriangle(unsigned int max_n)
+	{
+		 auto maxSupportedN = (size_type)floor((-3.0+sqrt(9.0+8.0*(underlyingContainer.max_size()-1.0)))/2.0);	// need to plot it! :)
+		 if(max_n > maxSupportedN)	// make sure we wont overflow when computing sizes and indices.
+			 throw std::length_error("max_n too large for the underlying container to store the whole triangle");
+
+		 nCapacity = nSize = max_n;
+		 underlyingContainer.resize((size_type)(nCapacity+1)*(nCapacity+2)>>1);	// without the test above resize would throw but 
+																				// whould not give a descriptive message.
+		 // fill the underlying container
+		 underlyingContainer[0] = 1ull;
+		 size_type index= 1u;
+		 for(unsigned int n = 1u ; n <= nCapacity ; index += ++n)
+			 fillColumn(n,index);
+	} // end PascalTriangle constructor
 
 }; // end namespace MathematicalFunctions
 }; // end namespace Math
