@@ -30,7 +30,7 @@ namespace MathematicalFunctions
 		if(n - k < k) k = n - k;
 		if(k == 0) return 1;
 
-		for(auto i = 2 ; i <= k ; i++)
+		for(auto i = 2u ; i <= k ; i++)
 		{
 			--n;
 			if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
@@ -38,14 +38,16 @@ namespace MathematicalFunctions
 				unsigned long long remainder = result%i;
 				result /= i;
 				if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
-					throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+					return numeric_limits<decltype(result)>::max();
+					//throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
 				result *= n;
 				if(remainder != 0)
 				{
 					remainder *= n;
 					remainder /= i;
 					if(numeric_limits<decltype(result)>::max() - result < remainder)	// if it would overflow
-						throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+						return numeric_limits<decltype(result)>::max();
+						//throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
 					result += remainder;
 				} // end if
 				continue;
