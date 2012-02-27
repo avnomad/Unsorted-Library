@@ -7,6 +7,8 @@
 #include <string>
 #include <stack>
 #include <windows.h>
+#undef max
+#undef min
 
 class StopWatch
 {
