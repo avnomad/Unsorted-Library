@@ -26,6 +26,7 @@ namespace MathematicalFunctions
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k)
 	{											// should use inline assembly to check for overflow efficiently...
 		unsigned long long result = n;
+		unsigned long long denom = 1ull;
 
 		if(n - k < k) k = n - k;
 		if(k == 0) return 1;
@@ -35,26 +36,34 @@ namespace MathematicalFunctions
 			--n;
 			if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
 			{
-				unsigned long long remainder = result%i;
-				result /= i;	// first divide
-				if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
-					throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
-				result *= n;	// then multiply
-				if(remainder != 0)
+				if(denom != 1ull)
 				{
-					remainder *= n;
-					remainder /= i;
-					if(numeric_limits<decltype(result)>::max() - result < remainder)	// if it would overflow
-						throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
-					result += remainder;
+					result /= denom;
+					denom = 1ull;
 				} // end if
-				continue;
+				if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
+				{
+					unsigned long long remainder = result%i;
+					result /= i;	// first divide
+					if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
+						throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+					result *= n;	// then multiply
+					if(remainder != 0)
+					{
+						remainder *= n;
+						remainder /= i;
+						if(numeric_limits<decltype(result)>::max() - result < remainder)	// if it would overflow
+							throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
+						result += remainder;
+					} // end if
+					continue;
+				} // end if
 			} // end if
 			result *= n;	// first multiply
-			result /= i;	// then divide
+			denom *= i;	// multiply denominator
 		} // end for
 
-		return result;
+		return (denom != 1ull) ? result/denom : result;
 	} // end function binomialCoefficient
 
 
