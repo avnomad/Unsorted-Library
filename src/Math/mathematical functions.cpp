@@ -33,13 +33,13 @@ namespace MathematicalFunctions
 		for(auto i = 2u ; i <= k ; i++)
 		{
 			--n;
-			if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
+			if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
 			{
 				unsigned long long remainder = result%i;
-				result /= i;
-				if(numeric_limits<decltype(result)>::max()/result < n)	// if it would overflow
+				result /= i;	// first divide
+				if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
 					throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
-				result *= n;
+				result *= n;	// then multiply
 				if(remainder != 0)
 				{
 					remainder *= n;
@@ -50,8 +50,8 @@ namespace MathematicalFunctions
 				} // end if
 				continue;
 			} // end if
-			result *= n;
-			result /= i;
+			result *= n;	// first multiply
+			result /= i;	// then divide
 		} // end for
 
 		return result;
