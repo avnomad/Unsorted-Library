@@ -39,7 +39,6 @@ namespace MathematicalFunctions
 				if(denom != 1ull)
 				{
 					result /= denom;
-					denom = 1ull;
 				} // end if
 				if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
 				{
@@ -56,8 +55,12 @@ namespace MathematicalFunctions
 							throw std::domain_error("binomialCoefficient cannot fit into an unsigned long long");
 						result += remainder;
 					} // end if
+					denom = 1ull;
 					continue;
 				} // end if
+				denom = i;
+				result *= n;
+				continue;
 			} // end if
 			result *= n;	// first multiply
 			denom *= i;	// multiply denominator
