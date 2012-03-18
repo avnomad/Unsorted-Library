@@ -27,12 +27,15 @@ namespace MathematicalFunctions
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k)
 	{											// should use inline assembly to check for overflow efficiently...
 		unsigned long long result = n;
-		unsigned long long denom = 1ull;
+		unsigned long long denom = 2ull;
 
-		if(n - k < k) k = n - k;
-		if(k == 0) return 1;
+		if(n - k < k) k = n - k;	// k = min(k,n-k)
+		if(k == 0u) return 1ull;
+		if(k == 1u) return n;
 
-		auto i = 2u;
+		result *= --n; /* can't overflow because at this point result==n and n is 32-bit */
+
+		auto i = 3u;
 		while(i <= k)
 		{
 			--n;
@@ -50,7 +53,7 @@ namespace MathematicalFunctions
 		} // end while
 
 		/* at this point i > k */
-		return (denom == 1) ? result : result/denom; /* will have 0 remainder */
+		return result/denom; /* at this point denom != 1 and remainder will be 0 */
 
 		do	/* if I need to divide first once I will always need to divide first */
 		{
@@ -73,7 +76,7 @@ namespace MathematicalFunctions
 		}
 		while(i <= k);
 
-		return result;
+		return result;	/* at this point denom is no longer valid but if it was it would be 1 */
 	} // end function binomialCoefficient
 
 
