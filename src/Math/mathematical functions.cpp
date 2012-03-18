@@ -23,6 +23,7 @@ namespace MathematicalFunctions
 	} // end function factorial
 
 
+	/* uses constant space */
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k)
 	{											// should use inline assembly to check for overflow efficiently...
 		unsigned long long result = n;
@@ -39,18 +40,19 @@ namespace MathematicalFunctions
 			{
 				result /= denom;
 				if(numeric_limits<decltype(result)>::max()/n < result)	// if it would overflow
-				{
-					denom = 1ull;
 					goto divide_first;
-				} // end if
-				denom = i++;
 				result *= n;
+				denom = i++;
 				continue;
 			} // end if
 			result *= n;
 			denom *= i++;
 		} // end while
-		while(i <= k)
+
+		/* at this point i > k */
+		return (denom == 1) ? result : result/denom; /* will have 0 remainder */
+
+		do	/* if I need to divide first once I will always need to divide first */
 		{
 			--n;
 		divide_first:
@@ -68,9 +70,10 @@ namespace MathematicalFunctions
 				result += remainder;
 			} // end if
 			++i;
-		} // end while
+		}
+		while(i <= k);
 
-		return (denom != 1ull) ? result/denom : result;
+		return result;
 	} // end function binomialCoefficient
 
 
