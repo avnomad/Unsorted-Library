@@ -86,11 +86,13 @@ namespace MathematicalFunctions
 		unsigned int c = 1;
 
 		//accuracy = fabs(accuracy);
+		if(accuracy < 3*numeric_limits<double>::epsilon())	// if I am correct, there is no point trying to add
+			accuracy = numeric_limits<double>::epsilon();	// something smaller than that to an approximation of Pi...
 		for(;;)
 		{
-			sum -= p = (double)4 / (c+=2);
+			sum -= p = 4.0 / (c+=2);
 			if(p < accuracy) return sum;
-			sum += p = (double)4 / (c+=2);
+			sum += p = 4.0 / (c+=2);
 			if(p < accuracy) return sum;
 		} // end for
 	} // end function pi
