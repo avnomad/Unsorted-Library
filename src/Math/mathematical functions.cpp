@@ -100,22 +100,31 @@ namespace MathematicalFunctions
 
 	double exp(double x, double accuracy)	// is this the best way to implement this?
 	{
-		double sum;
+		double oldSum;
+		double newSum;
 		double p;
 		unsigned int i;
 
-		sum = 1 + x;
+		if(x < 0)	// workaround to cope with arithmetic errors when computing exp with x < 0.
+		{
+			if(accuracy > 1/-x) accuracy = 1/-x;	// accuracy = min(accuracy,1/x)
+			return 1.0/exp(-x,accuracy*x*x/2.0);	// if my calculations are correct, new accuracy guarantees that
+													// fabs(return_value-Exp(x)) < old_accuracy
+		} // end if
+
+		newSum = 1 + x;
 		p = x;
 		i = 2;
 		//accuracy = fabs(accuracy);
 		do
 		{
+			oldSum = newSum;
 			p *= x / i++;
-			sum += p;
+			newSum = p + oldSum;
 		}
-		while(p>accuracy);
+		while(p>accuracy && newSum != oldSum);
 
-		return sum;
+		return newSum;
 	} // end function exp
 
 

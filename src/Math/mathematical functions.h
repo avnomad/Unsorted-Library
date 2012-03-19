@@ -14,8 +14,9 @@ namespace MathematicalFunctions
 	// prototypes
 	unsigned long long int factorial(unsigned int n);
 	unsigned long long int binomialCoefficient(unsigned int n, unsigned int k);
-	double pi(double accuracy);
-	double exp(double x, double accuracy);
+	double pi(double accuracy);	// fabs(Pi-pi(e)) < e
+	double exp(double x, double accuracy); // fabs(exp(x,e) - Exp(x)) < e
+											// accuracy is not significant digits!
 
 	class PascalTriangle
 	{
