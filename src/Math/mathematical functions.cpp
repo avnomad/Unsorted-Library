@@ -129,20 +129,26 @@ namespace MathematicalFunctions
 
 
 	/* Compute the value of one Bernstein polynomial. */
-	/* assumes 0 <= index <= degree */
+	/* assumes 0 <= index <= degree && degree >= 0 */
 	double BernsteinPolynomial(unsigned index, unsigned degree, double x)
 	{
-		/* during the nth pass intermediate[c] holds B[index-degree+c,n] */
-		/* size == degree+1 throughout */
-		std::vector<double> intermediate(degree+1,0.0);	// initialize to 0.0
-		intermediate[degree-index] = 1.0;	// degree-index at this point corresponds to B[0,0]
+		/* during the nth pass intermediate[c] holds B[c,n+c] */
+		/* size == index+1 throughout */
+		std::vector<double> intermediate(index+1);
 		double cx = 1.0 - x;
 
+		intermediate[0] = 1.0;
 		for(auto i = 1u ; i < intermediate.size() ; i++)
-			for(auto j = degree ; j >= i ; j--)
-				intermediate[j] = cx*intermediate[j] + x*intermediate[j-1];
+			intermediate[i] = x*intermediate[i-1];
 
-		return intermediate[degree];
+		for(auto i = 1u ; i <= degree-index ; i++)
+		{
+			intermediate[0] = cx*intermediate[0];
+			for(auto j = 1u ; j < intermediate.size() ; j++)
+				intermediate[j] = cx*intermediate[j] + x*intermediate[j-1];
+		} // end for
+
+		return intermediate[index];
 	} // end function BernsteinPolynomial
 
 
