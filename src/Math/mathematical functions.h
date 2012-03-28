@@ -18,6 +18,7 @@ namespace MathematicalFunctions
 	double exp(double x, double accuracy); // fabs(exp(x,e) - Exp(x)) < e
 											// accuracy is not significant digits!
 	double BernsteinPolynomial(unsigned index, unsigned degree, double x);
+	double BernsteinPolynomial(unsigned index, unsigned degree, double x, std::vector<double> &intermediate);
 
 
 	class PascalTriangle
