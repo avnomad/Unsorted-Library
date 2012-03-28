@@ -128,23 +128,31 @@ namespace MathematicalFunctions
 	} // end function exp
 
 
+	/* proxy function. Allocates memory and calls BernsteinPolynomial/4 to do the real job */
+	double BernsteinPolynomial(unsigned index, unsigned degree, double x)
+	{
+		std::vector<double> intermediate(index+1);
+
+		return BernsteinPolynomial(index,degree,x,intermediate);
+	} // end function BernsteinPolynomial
+
+
 	/* Compute the value of one Bernstein polynomial. */
 	/* assumes 0 <= index <= degree && degree >= 0 */
-	double BernsteinPolynomial(unsigned index, unsigned degree, double x)
+	double BernsteinPolynomial(unsigned index, unsigned degree, double x, std::vector<double> &intermediate)
 	{
 		/* during the nth pass intermediate[c] holds B[c,n+c] */
 		/* size == index+1 throughout */
-		std::vector<double> intermediate(index+1);
 		double cx = 1.0 - x;
 
 		intermediate[0] = 1.0;
-		for(auto i = 1u ; i < intermediate.size() ; i++)
+		for(auto i = 1u ; i <= index ; i++)
 			intermediate[i] = x*intermediate[i-1];
 
 		for(auto i = 1u ; i <= degree-index ; i++)
 		{
 			intermediate[0] = cx*intermediate[0];
-			for(auto j = 1u ; j < intermediate.size() ; j++)
+			for(auto j = 1u ; j <= index ; j++)
 				intermediate[j] = cx*intermediate[j] + x*intermediate[j-1];
 		} // end for
 
