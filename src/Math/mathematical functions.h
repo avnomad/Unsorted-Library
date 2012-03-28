@@ -17,6 +17,8 @@ namespace MathematicalFunctions
 	double pi(double accuracy);	// fabs(Pi-pi(e)) < e
 	double exp(double x, double accuracy); // fabs(exp(x,e) - Exp(x)) < e
 											// accuracy is not significant digits!
+	double BernsteinPolynomial(unsigned index, unsigned degree, double x);
+
 
 	class PascalTriangle
 	{

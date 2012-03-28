@@ -128,6 +128,24 @@ namespace MathematicalFunctions
 	} // end function exp
 
 
+	/* Compute the value of one Bernstein polynomial. */
+	/* assumes 0 <= index <= degree */
+	double BernsteinPolynomial(unsigned index, unsigned degree, double x)
+	{
+		/* during the nth pass intermediate[c] holds B[index-degree+c,n] */
+		/* size == degree+1 throughout */
+		std::vector<double> intermediate(degree+1,0.0);	// initialize to 0.0
+		intermediate[degree-index] = 1.0;	// degree-index at this point corresponds to B[0,0]
+		double cx = 1.0 - x;
+
+		for(auto i = 1u ; i < intermediate.size() ; i++)
+			for(auto j = degree ; j >= i ; j--)
+				intermediate[j] = cx*intermediate[j] + x*intermediate[j-1];
+
+		return intermediate[degree];
+	} // end function BernsteinPolynomial
+
+
 	PascalTriangle::PascalTriangle(unsigned int max_n)
 	{
 		if(numeric_limits<unsigned long long int>::digits == 64 && max_n >= 68u)	// if n is 67 everything fits. if n is 68 k in 31..37 overflows...
