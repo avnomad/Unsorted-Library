@@ -161,17 +161,12 @@ namespace MathematicalFunctions
 
 
 	PascalTriangle::PascalTriangle(unsigned int max_n)
+		:BaseTriangle(max_n)
 	{
 		if(numeric_limits<unsigned long long int>::digits == 64 && max_n >= 68u)	// if n is 67 everything fits. if n is 68 k in 31..37 overflows...
 			throw std::domain_error("At least one binomial coefficient could not fit into an unsigned long long when creating PascalTriangle.");
 					// should add more tests in case unsigned long long is different size...
-		auto maxSupportedN = (size_type)floor((-3.0+sqrt(9.0+8.0*(underlyingContainer.max_size()-1.0)))/2.0);	// need to plot it! :)
-		if(max_n > maxSupportedN)	// make sure we wont overflow when computing sizes and indices.
-			throw std::length_error("max_n too large for the underlying container to store the whole triangle");
 
-		nCapacity = nSize = max_n;
-		underlyingContainer.resize((size_type)(nCapacity+1)*(nCapacity+2)>>1);	// without the test above resize would throw but 
-																			// whould not give a descriptive message.
 		// fill the underlying container
 		underlyingContainer[0] = 1ull;
 		size_type index= 1u;

@@ -21,8 +21,13 @@ namespace MathematicalFunctions
 	double BernsteinPolynomial(unsigned index, unsigned degree, double x, std::vector<double> &intermediate);
 
 
-	class PascalTriangle
+	/**	Code common to *Triangle classes. Not intended for client use.
+	 *	This class is mostly concerned with the layout of the underlying container.
+	 *	Could probably raise more functionality to the base class later.
+	 */
+	class BaseTriangle
 	{
+	protected:
 		// typedefs
 		typedef std::vector<unsigned long long int>::size_type size_type;
 
@@ -33,8 +38,17 @@ namespace MathematicalFunctions
 																	// this allows columns to be added/removed at the end of vector.
 		// member functions
 	public:
-		explicit PascalTriangle(unsigned int max_n = 0);	// PascalTriangle constructor
-		~PascalTriangle(){/* empty */}	// ~PascalTriangle destructor
+		explicit BaseTriangle(unsigned int max_n)		// BaseTriangle constructor
+		{
+			auto maxSupportedN = (size_type)floor((-3.0+sqrt(9.0+8.0*(underlyingContainer.max_size()-1.0)))/2.0);	// need to plot it! :)
+			if(max_n > maxSupportedN)	// make sure we wont overflow when computing sizes and indices.
+				throw std::length_error("max_n too large for the underlying container to store the whole triangle");
+
+			nCapacity = nSize = max_n;
+			underlyingContainer.resize((size_type)(nCapacity+1)*(nCapacity+2)>>1);	// without the test above resize would throw but 
+																				// whould not give a descriptive message.
+		} // end BaseTriangle constructor
+
 
 		unsigned long long int operator()(unsigned int n, unsigned int k)
 			throw(std::out_of_range)
@@ -46,6 +60,19 @@ namespace MathematicalFunctions
 			return underlyingContainer[((size_type)n*(n+1)>>1) + k];
 		} // end function operator()
 
+	private:
+		// not copyable and not movable (yet)
+		BaseTriangle(const BaseTriangle &);
+		BaseTriangle(BaseTriangle &&);
+		BaseTriangle &operator=(const BaseTriangle &);
+		BaseTriangle &operator=(BaseTriangle &&);
+	}; // end class BaseTriangle
+
+
+	class PascalTriangle : public BaseTriangle
+	{
+	public:
+		explicit PascalTriangle(unsigned int max_n = 0);	// PascalTriangle constructor
 	private:
 		// assumes there is at least 1 column before this one and the immediately preceding column is filled.
 		// should be callable for any n > 0.
@@ -70,11 +97,6 @@ namespace MathematicalFunctions
 			} // end if
 		} // end function fillColumn
 
-		// not copyable and not movable (yet)
-		PascalTriangle(const PascalTriangle &);
-		PascalTriangle(PascalTriangle &&);
-		PascalTriangle &operator=(const PascalTriangle &);
-		PascalTriangle &operator=(PascalTriangle &&);
 	}; // end class PascalTriangle
 
 }; // end namespace MathematicalFunctions
