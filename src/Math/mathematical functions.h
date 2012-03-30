@@ -114,17 +114,19 @@ namespace MathematicalFunctions
 		void fillColumn(unsigned int n, size_type initial_index)	// n is column k is row
 		{
 			size_type begin = initial_index;
-			size_type end = begin+n;
+			const size_type end = begin+n;
 			size_type previous_begin = begin-n;
-			double cx = 1.0 - x;
+			const double cx = 1.0 - x;
+			double left_term;
 
 			underlyingContainer[begin++] = cx*underlyingContainer[previous_begin];
+			left_term = x*underlyingContainer[previous_begin];
 			while(begin < end)
 			{
-				underlyingContainer[begin++] = x*underlyingContainer[previous_begin] + cx*underlyingContainer[previous_begin+1];
-				++previous_begin;	// can get rid of the 'previous_begin+1' with the 'save' technique from The NURBS Book p.21
+				underlyingContainer[begin++] = left_term + cx*underlyingContainer[++previous_begin];
+				left_term = x*underlyingContainer[previous_begin];
 			} // end while
-			underlyingContainer[end] = x*underlyingContainer[previous_begin];
+			underlyingContainer[end] = left_term;
 		} // end function fillColumn
 
 	}; // end class BernsteinTriangle
