@@ -163,16 +163,29 @@ namespace MathematicalFunctions
 	PascalTriangle::PascalTriangle(unsigned int max_n)
 		:BaseTriangle(max_n)
 	{
-		if(numeric_limits<unsigned long long int>::digits == 64 && max_n >= 68u)	// if n is 67 everything fits. if n is 68 k in 31..37 overflows...
+		if(numeric_limits<BaseTriangle::element_type>::digits == 64 && max_n >= 68u)	// if n is 67 everything fits. if n is 68 k in 31..37 overflows...
 			throw std::domain_error("At least one binomial coefficient could not fit into an unsigned long long when creating PascalTriangle.");
 					// should add more tests in case unsigned long long is different size...
 
 		// fill the underlying container
 		underlyingContainer[0] = 1ull;
-		size_type index= 1u;
+		size_type index = 1u;
 		for(unsigned int n = 1u ; n <= nCapacity ; index += ++n)
 			fillColumn(n,index);
 	} // end PascalTriangle constructor
+
+
+	BernsteinTriangle::BernsteinTriangle(double x, unsigned int max_n)
+		:BaseTriangle(max_n)
+	{
+		this->x = x;
+
+		// fill the underlying container
+		underlyingContainer[0] = 1.0;
+		size_type index = 1u;
+		for(unsigned int n = 1u ; n <= nCapacity ; index += ++n)
+			fillColumn(n,index);
+	} // end BernsteinTriangle constructor
 
 }; // end namespace MathematicalFunctions
 }; // end namespace Math

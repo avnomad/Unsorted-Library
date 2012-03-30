@@ -23,18 +23,19 @@ namespace MathematicalFunctions
 
 	/**	Code common to *Triangle classes. Not intended for client use.
 	 *	This class is mostly concerned with the layout of the underlying container.
-	 *	Could probably raise more functionality to the base class later.
 	 */
+	template<typename ElementType>
 	class BaseTriangle
 	{
 	protected:
 		// typedefs
-		typedef std::vector<unsigned long long int>::size_type size_type;
+		typedef ElementType element_type;
+		typedef typename std::vector<element_type>::size_type size_type;
 
 		// data members
 		unsigned int nSize;	// I plan to add a way to change the size used to throw exceptions...
 		unsigned int nCapacity;	// ...without throwing away already computed values. (vectors don't shrink anyway!)
-		std::vector<unsigned long long int> underlyingContainer;	// C(n,k) is stored at index n*(n+1)/2 + k.
+		std::vector<element_type> underlyingContainer;	// C(n,k) is stored at index n*(n+1)/2 + k.
 																	// this allows columns to be added/removed at the end of vector.
 		// member functions
 	public:
@@ -50,7 +51,7 @@ namespace MathematicalFunctions
 		} // end BaseTriangle constructor
 
 
-		unsigned long long int operator()(unsigned int n, unsigned int k)
+		element_type operator()(unsigned int n, unsigned int k)
 			throw(std::out_of_range)
 		{
 			if(n > nSize)
@@ -69,7 +70,7 @@ namespace MathematicalFunctions
 	}; // end class BaseTriangle
 
 
-	class PascalTriangle : public BaseTriangle
+	class PascalTriangle : public BaseTriangle<unsigned long long int>
 	{
 	public:
 		explicit PascalTriangle(unsigned int max_n = 0);	// PascalTriangle constructor
@@ -98,6 +99,35 @@ namespace MathematicalFunctions
 		} // end function fillColumn
 
 	}; // end class PascalTriangle
+
+
+	class BernsteinTriangle : public BaseTriangle<double>
+	{
+		// data members
+		double x;
+	public:
+		explicit BernsteinTriangle(double x, unsigned int max_n = 0);	// BernsteinTriangle constructor
+	private:
+		// assumes there is at least 1 column before this one and the immediately preceding column is filled.
+		// should be callable for any n > 0.
+		// currently it does not check for overflow...
+		void fillColumn(unsigned int n, size_type initial_index)	// n is column k is row
+		{
+			size_type begin = initial_index;
+			size_type end = begin+n;
+			size_type previous_begin = begin-n;
+			double cx = 1.0 - x;
+
+			underlyingContainer[begin++] = cx*underlyingContainer[previous_begin];
+			while(begin < end)
+			{
+				underlyingContainer[begin++] = x*underlyingContainer[previous_begin] + cx*underlyingContainer[previous_begin+1];
+				++previous_begin;	// can get rid of the 'previous_begin+1' with the 'save' technique from The NURBS Book p.21
+			} // end while
+			underlyingContainer[end] = x*underlyingContainer[previous_begin];
+		} // end function fillColumn
+
+	}; // end class BernsteinTriangle
 
 }; // end namespace MathematicalFunctions
 }; // end namespace Math
