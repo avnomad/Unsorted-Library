@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <math.h>
 
 namespace Math
 {
@@ -41,7 +42,7 @@ namespace MathematicalFunctions
 	public:
 		explicit BaseTriangle(unsigned int max_n)		// BaseTriangle constructor
 		{
-			auto maxSupportedN = (size_type)floor((-3.0+sqrt(9.0+8.0*(underlyingContainer.max_size()-1.0)))/2.0);	// need to plot it! :)
+			auto maxSupportedN = (size_type)std::floor((-3.0+std::sqrt(9.0+8.0*(underlyingContainer.max_size()-1.0)))/2.0);	// need to plot it! :)
 			if(max_n > maxSupportedN)	// make sure we wont overflow when computing sizes and indices.
 				throw std::length_error("max_n too large for the underlying container to store the whole triangle");
 

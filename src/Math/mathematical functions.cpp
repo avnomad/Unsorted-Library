@@ -1,9 +1,7 @@
 // mathematical functions.cpp:  common stand-alone mathematical functions (implementation)
 
 #include "mathematical functions.h"
-#include <math.h>
-using std::sqrt;
-using std::floor;
+
 #include <limits>
 using std::numeric_limits;
 
