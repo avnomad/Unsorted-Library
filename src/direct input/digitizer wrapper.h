@@ -16,9 +16,9 @@ class DIDigitizer : public DigitizerState , public DigitizerProperties
 {
 public:
 
-			/***************************
-			* contructors & destructor *
-			***************************/
+			/****************************
+			* constructors & destructor *
+			****************************/
 
 	inline DIDigitizer(IDirectInput8 *directInputObject , WindowHandle mainWindow , DWORD modeFlags = DISCL_EXCLUSIVE | DISCL_BACKGROUND)	// DIDigitizer contructor
 	{
@@ -82,7 +82,7 @@ public:
 			MessageBox(0,_T("This object has not been initialized."),_T("Not initialized:"),MB_OK | MB_ICONERROR);
 			break;
 		default:
-			MessageBox(0,_T("An unknown error has occured."),_T("Error:"),MB_OK | MB_ICONERROR);
+			MessageBox(0,_T("An unknown error has occurred."),_T("Error:"),MB_OK | MB_ICONERROR);
 			break;
 		case DI_OK:	// everything in order
 			break;
@@ -101,12 +101,12 @@ public:
 			MessageBox(0,_T("This object has not been initialized."),_T("Not initialized:"),MB_OK | MB_ICONERROR);
 			break;
 		default:
-			MessageBox(0,_T("An unknown error has occured."),_T("Error:"),MB_OK | MB_ICONERROR);
+			MessageBox(0,_T("An unknown error has occurred."),_T("Error:"),MB_OK | MB_ICONERROR);
 			break;
 		case DI_OK:	// everything in order
 			break;
 		} // end switch
-	} // end DIDigitizer contructor
+	} // end DIDigitizer constructor
 
 
 	inline ~DIDigitizer()																						// DIDigitizer destructor
@@ -181,7 +181,7 @@ public:
 				this->acquire();
 				break;
 			default:
-				MessageBox(0,_T("An unknown error has occured."),_T("Error:"),MB_OK | MB_ICONERROR);
+				MessageBox(0,_T("An unknown error has occurred."),_T("Error:"),MB_OK | MB_ICONERROR);
 				break;
 			case DI_OK:	// everything in order
 				break;
@@ -247,28 +247,28 @@ public:
 		getProperty(DIPROP_GETPORTDISPLAYNAME , &stringProperty.diph);
 		portName = stringProperty.wsz;
 		
-		// get granulatity, X axis
+		// get granularity, X axis
 		wordProperty.diph.dwHow = DIPH_BYOFFSET;
 		wordProperty.diph.dwObj = 0;
 		getProperty(DIPROP_GRANULARITY , &wordProperty.diph);
 		XAxisGranularity = wordProperty.dwData;
 
-		// get granulatity, Y axis
+		// get granularity, Y axis
 		wordProperty.diph.dwObj = 4;
 		getProperty(DIPROP_GRANULARITY , &wordProperty.diph);
 		YAxisGranularity = wordProperty.dwData;
 
-		// get granulatity, Tip Pressure
+		// get granularity, Tip Pressure
 		wordProperty.diph.dwObj = 8;
 		getProperty(DIPROP_GRANULARITY , &wordProperty.diph);
 		TipPressureGranularity = wordProperty.dwData;
 
-		// get granulatity, X tilt
+		// get granularity, X tilt
 		wordProperty.diph.dwObj = 12;
 		getProperty(DIPROP_GRANULARITY , &wordProperty.diph);
 		XTiltGranularity = wordProperty.dwData;
 
-		// get granulatity, Y tilt
+		// get granularity, Y tilt
 		wordProperty.diph.dwObj = 16;
 		getProperty(DIPROP_GRANULARITY , &wordProperty.diph);
 		YTiltGranularity = wordProperty.dwData;

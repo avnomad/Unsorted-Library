@@ -52,7 +52,7 @@ namespace MathematicalFunctions
 		} // end BaseTriangle constructor
 
 
-		element_type operator()(unsigned int n, unsigned int k)
+		element_type operator()(unsigned int n, unsigned int k) const
 			throw(std::out_of_range)
 		{
 			if(n > nSize)
