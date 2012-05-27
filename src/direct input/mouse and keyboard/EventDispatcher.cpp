@@ -218,7 +218,7 @@ EventDispatcher &EventDispatcher::execute()														// execute
 	} // end if
 
 
-	return *this;											// the best thing would be to count the stanges in state  too (in cast of INPUTLOST)
+	return *this;											// the best thing would be to count the changes in state too (in case of INPUTLOST)
 															// to determine a more accurate event count and a better eventPeriod.
 } // end function execute
 
