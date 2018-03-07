@@ -24,7 +24,7 @@
 
 
 		/*	copies from the range [iBegin,iEnd) to the range starting at oBegin until	*
-		 *	the sequence in [sBegin,sEnd] is encountered or util the end of the input	*
+		 *	the sequence in [sBegin,sEnd] is encountered or until the end of the input	*
 		 *	range, whichever comes first.												*
 		 *																				*
 		 *	Preconditions:	sBegin should be != sEnd and the output target should be	*
@@ -35,7 +35,7 @@
 		 *	the given sequence was encountered.											*
 		 *																				*/
 
-		// Note:	this version can't find the sequence if it is preceeded by a prefix
+		// Note:	this version can't find the sequence if it is preceded by a prefix
 		//			of itself...
 
 
@@ -263,10 +263,10 @@ int fillable(IIter begin , IIter end)																						// fillable
  * function passed as the 5th argument. The 3rd and 4th arguments should be output iterators (not necessarily of
  * the same type) that point to containers supporting the insert method (all the first class containers qualify).
  * This algorithm splits the elements in the range [iBegin,iEnd) in 2 sets: those that satisfy the predicate f,
- * and those that don't. The difference from the split algorithm is that this algorithm puts ranges of satisfing
- * elements seperated by a range of nonsatisfing elements in subsequent containers in the range of containers
- * specified by tBegin, instead of putting them all in a single container. Similarly 2 ranges of nonsatisfing
- * elements seperated by a range of satisfing elements will be but in subsequent containers of the range specified
+ * and those that don't. The difference from the split algorithm is that this algorithm puts ranges of satisfying
+ * elements separated by a range of non-satisfying elements in subsequent containers in the range of containers
+ * specified by tBegin, instead of putting them all in a single container. Similarly 2 ranges of non-satisfying
+ * elements separated by a range of satisfying elements will be but in subsequent containers of the range specified
  * by fBegin. Both tBegin and fBegin should be pointing in containers of containers of sufficient size.
  */ 
 
