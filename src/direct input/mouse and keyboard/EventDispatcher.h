@@ -113,8 +113,8 @@ public:
 		iY = initY;
 		iWidth = screenWidth;
 		iHeight = screenHeight;
-		xFactor = screenWidth/65535.0;
-		yFactor = screenHeight/65535.0;
+		xFactor = screenWidth/30000.0;
+		yFactor = screenHeight/65536.0;
 	} // end function assumeDigitizer
 
 
